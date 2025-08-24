@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Community Project: Mosquito Breeding & Dengue Risk</title>
+  <meta name="description" content="A complete one-page HTML project template to research, collect data, and communicate solutions for mosquito breeding & dengue risk." />
+  <style>
+    :root{
+      --bg:#0b1220; --card:#121a2b; --muted:#7c8aa6; --text:#e8eefc; --brand:#58d68d; --accent:#7fb3ff; --warn:#ffcc66; --danger:#ff7a7a;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;background:linear-gradient(180deg,#08101d 0%, #0b1220 60%, #0f1526 100%);color:var(--text);}
+    a{color:var(--accent);text-decoration:none}
+    header.hero{position:relative;overflow:hidden;padding:72px 20px 40px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    .badge{display:inline-block;background:rgba(127,179,255,.15);color:var(--accent);padding:6px 10px;border:1px solid rgba(127,179,255,.3);border-radius:999px;font-size:12px;letter-spacing:.3px}
+    h1{font-size:clamp(28px,4.5vw,44px);margin:.4rem 0 0;line-height:1.1}
+    .subtitle{color:var(--muted);max-width:800px;margin:10px 0 18px}
+    .hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{background:var(--brand);color:#071318;padding:10px 16px;border:none;border-radius:12px;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
+    nav.top{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:rgba(11,18,32,.7);border-bottom:1px solid rgba(255,255,255,.08);z-index:9}
+    nav.top .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:10px 16px}
+    nav .links{display:flex;gap:10px;flex-wrap:wrap}
+    nav .links a{padding:8px 12px;border:1px solid transparent;border-radius:10px;color:var(--muted)}
+    nav .links a:hover{border-color:rgba(255,255,255,.14);color:var(--text)}
+    .grid{display:grid;gap:18px}
+    .two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .three{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px}
+    .card h3{margin:.2rem 0 6px;font-size:1.1rem}
+    section{padding:26px 0}
+    .kpi{display:flex;align-items:center;gap:10px}
+    .kpi .dot{width:10px;height:10px;border-radius:999px}
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;font-size:14px}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .progress{height:10px;background:#1a2540;border-radius:999px;overflow:hidden}
+    .progress > span{display:block;height:100%;background:var(--accent)}
+    input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0d162a;color:var(--text)}
+    label{font-size:13px;color:var(--muted)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:700px){.row{grid-template-columns:1fr}}
+    .pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
+    .warn{color:var(--warn)}.danger{color:var(--danger)}
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
+    .print{display:inline-block;margin-top:8px}
+    /* print tweaks */
+    @media print{nav.top,.hero-cta,#exportCSV,#addEntry,#imgInput,.print{display:none} body{background:#fff;color:#000} .card{border-color:#ddd}}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+    .thumb{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .tag{font-size:11px;opacity:.8}
+    .note{font-size:13px;color:var(--muted)}
+    .timeline{counter-reset:step}
+    .timeline li{list-style:none;position:relative;padding-left:34px;margin:10px 0}
+    .timeline li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#06101e;font-weight:700;display:grid;place-items:center}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <span class="badge">Community/Local Problem Research</span>
+      <h1>Mosquito Breeding & Dengue Risk</h1>
+      <p class="subtitle">One-page project workspace to study local mosquito breeding sources, engage the community, and implement low-cost dengue risk reduction. Use the survey form, track tasks, export data, and print a report – all in one HTML file.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#data">Add Survey Entry</a>
+        <a class="btn secondary" href="#report">Jump to Report</a>
+        <button id="printBtn" class="btn secondary print">Print / Save PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="top">
+    <div class="container wrap">
+      <strong class="small">Project Menu</strong>
+      <div class="links">
+        <a href="#overview">Overview</a>
+        <a href="#objectives">Objectives</a>
+        <a href="#data">Survey</a>
+        <a href="#tracker">Tasks</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#budget">Budget</a>
+        <a href="#awareness">Awareness</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#report">Report</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section id="overview" class="grid two">
+      <div class="card">
+        <h2>Problem Statement</h2>
+        <p>Stagnant water in drains, potholes, and containers leads to mosquito breeding, increasing <em>Aedes aegypti</em> populations and dengue risk. This project documents hotspots, engages stakeholders, and pilots practical interventions.</p>
+        <div class="grid two">
+          <div class="kpi"><span class="dot" style="background:var(--accent)"></span><div><strong id="kpi-count">0</strong><div class="small muted">Survey Entries</div></div></div>
+          <div class="kpi"><span class="dot" style="background:var(--brand)"></span><div><strong id="kpi-cleaned">0</strong><div class="small muted">Sites Resolved</div></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Stakeholders</h2>
+        <div class="grid three">
+          <div class="pill"><span class="tag">Residents</span></div>
+          <div class="pill"><span class="tag">Municipality</span></div>
+          <div class="pill"><span class="tag">School/College NSS</span></div>
+          <div class="pill"><span class="tag">Health Dept.</span></div>
+          <div class="pill"><span class="tag">Ward Councillor</span></div>
+          <div class="pill"><span class="tag">Volunteers</span></div>
+        </div>
+        <p class="note">Coordination: weekly check-ins (Meet/Zoom), daily updates (WhatsApp), shared docs for notes.</p>
+      </div>
+    </section>
+
+    <section id="objectives" class="grid two">
+      <div class="card">
+        <h2>Objectives</h2>
+        <ul>
+          <li>Map breeding hotspots and rank severity.</li>
+          <li>Co-create low-cost interventions with residents.</li>
+          <li>Run awareness drives on source reduction ("Dry Day").</li>
+          <li>Measure outcomes: reduced water stagnation & larvae sightings.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Success Metrics</h2>
+        <ul>
+          <li>&ge; 30 hotspots documented with photos & actions.</li>
+          <li>&ge; 60% of reported sites resolved within 2 weeks.</li>
+          <li>&ge; 3 awareness events, 100+ residents reached.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="data" class="grid two">
+      <div class="card">
+        <h2>Field Survey – Add Entry</h2>
+        <form id="surveyForm">
+          <div class="row">
+            <div>
+              <label>Location / Landmark</label>
+              <input name="location" placeholder="e.g., 3rd Cross Street, near park" required />
+            </div>
+            <div>
+              <label>Date</label>
+              <input type="date" name="date" required />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label>Breeding Source</label>
+              <select name="source" required>
+                <option value="Stagnant drain">Stagnant drain</option>
+                <option value="Pothole">Pothole</option>
+                <option value="Open tank">Open tank</option>
+                <option value="Discarded container">Discarded container</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label>Severity</label>
+              <select name="severity" required>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label>Action Taken</label>
+              <select name="action" required>
+                <option value="Reported">Reported</option>
+                <option value="Cleaned">Cleaned</option>
+                <option value="Covered">Covered</option>
+                <option value="Fumigated">Fumigated</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </div>
+            <div>
+              <label>Photo (optional)</label>
+              <input id="imgInput" type="file" accept="image/*" />
+            </div>
+          </div>
+          <label>Notes</label>
+          <textarea name="notes" rows="3" placeholder="Observations, people consulted, etc."></textarea>
+          <div style="display:flex;gap:10px;margin-top:10px">
+            <button class="btn" id="addEntry" type="submit">Add Entry</button>
+            <button class="btn secondary" id="exportCSV" type="button">Export CSV</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Survey Data</h2>
+        <table class="table" id="dataTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Source</th>
+              <th>Severity</th>
+              <th>Action</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p class="small muted">Tip: Use Export to download a CSV for your report or spreadsheet.</p>
+      </div>
+    </section>
+
+    <section id="tracker" class="grid two">
+      <div class="card">
+        <h2>Task Tracker</h2>
+        <table class="table" id="taskTable">
+          <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Progress</th></tr></thead>
+          <tbody>
+            <tr><td>Map hotspots with photos</td><td>Team</td><td>In Progress</td><td><div class="progress"><span style="width:40%"></span></div></td></tr>
+            <tr><td>Meet municipality</td><td>Lead</td><td>Planned</td><td><div class="progress"><span style="width:10%"></span></div></td></tr>
+            <tr><td>Awareness poster drive</td><td>NSS</td><td>Planned</td><td><div class="progress"><span style="width:0%"></span></div></td></tr>
+          </tbody>
+        </table>
+        <p class="note">Update progress bars and status as you advance.</p>
+      </div>
+      <div class="card">
+        <h2>Quick Stats</h2>
+        <div class="grid two">
+          <div>
+            <div class="muted small">High Severity</div>
+            <div id="statHigh" style="font-size:28px;font-weight:700">0</div>
+          </div>
+          <div>
+            <div class="muted small">Pending Actions</div>
+            <div id="statPending" style="font-size:28px;font-weight:700">0</div>
+          </div>
+        </div>
+        <canvas id="barChart" width="500" height="220" style="margin-top:10px;background:#0d162a;border-radius:10px;border:1px solid rgba(255,255,255,.08)"></canvas>
+        <p class="small muted">Chart: entries by source type (auto-updates).</p>
+      </div>
+    </section>
+
+    <section id="timeline" class="card">
+      <h2>Project Timeline (4 Weeks)</h2>
+      <ul class="timeline">
+        <li><strong>Week 1 – Research:</strong> Field scouting, initial surveys, baseline photos.</li>
+        <li><strong>Week 2 – Co-create:</strong> Meet stakeholders, shortlist interventions.</li>
+        <li><strong>Week 3 – Implement:</strong> Clean-ups, covers, awareness sessions.</li>
+        <li><strong>Week 4 – Evaluate:</strong> Verify sites, document outcomes, finalize report.</li>
+      </ul>
+    </section>
+
+    <section id="budget" class="grid two">
+      <div class="card">
+        <h2>Budget (Indicative)</h2>
+        <table class="table" id="budgetTable">
+          <thead><tr><th>Item</th><th>Cost (₹)</th></tr></thead>
+          <tbody>
+            <tr><td>Printing (posters, flyers)</td><td contenteditable>1000</td></tr>
+            <tr><td>Session logistics</td><td contenteditable>2000</td></tr>
+            <tr><td>Prototype / materials</td><td contenteditable>3000</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><th>Total</th><th id="budgetTotal">6000</th></tr>
+          </tfoot>
+        </table>
+        <p class="small muted">Edit costs inline; total updates automatically.</p>
+      </div>
+      <div class="card">
+        <h2>Team & Communication</h2>
+        <ul>
+          <li>Weekly check-ins – Meet/Zoom</li>
+          <li>Daily updates – WhatsApp group</li>
+          <li>Docs – Google Drive (Docs/Sheets)</li>
+          <li>Single point of contact – Project Lead</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="awareness" class="grid three">
+      <div class="card">
+        <h3>Poster – Stop Stagnant Water</h3>
+        <p class="muted small">Key message: "Tip, Cover, Dry – every Friday is Dry Day."</p>
+      </div>
+      <div class="card">
+        <h3>Workshop – Home Checks</h3>
+        <p class="muted small">10-min weekly checks: coolers, pots, trays, gutters.</p>
+      </div>
+      <div class="card">
+        <h3>School Drive – NSS</h3>
+        <p class="muted small">Student volunteers to survey lanes & guide households.</p>
+      </div>
+    </section>
+
+    <section id="gallery" class="card">
+      <h2>Photo Gallery</h2>
+      <input id="galleryInput" type="file" multiple accept="image/*" />
+      <div id="galleryGrid" class="gallery" style="margin-top:10px"></div>
+      <p class="small muted">Upload site photos; stored in-memory for this session.</p>
+    </section>
+
+    <section id="report" class="grid two">
+      <div class="card">
+        <h2>Report Notes</h2>
+        <p class="muted small">Use this space to draft your summary before printing.</p>
+        <textarea id="reportNotes" rows="8" placeholder="Intro, methods, findings, interventions, outcomes, next steps..."></textarea>
+      </div>
+      <div class="card">
+        <h2>One-Page Summary</h2>
+        <ul>
+          <li><strong>Goal:</strong> Reduce dengue risk by eliminating breeding sites.</li>
+          <li><strong>Methods:</strong> Field survey, stakeholder meetings, awareness.</li>
+          <li><strong>Deliverables:</strong> Dataset, photo log, posters, final report.</li>
+          <li><strong>Budget:</strong> <span id="budgetInline">₹6,000</span> (indicative).</li>
+          <li><strong>Status:</strong> <span id="statusInline">Initiated</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="small">&copy; <span id="year"></span> Community Project Workspace • Built with plain HTML/CSS/JS</div>
+    </div>
+  </footer>
+
+  <script>
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    // State
+    const state = { entries: [], images: [], chart: null };
+
+    // Restore from localStorage
+    (function init(){
+      $('#year').textContent = new Date().getFullYear();
+      const saved = localStorage.getItem('mosq-project');
+      if(saved){
+        try{ const data = JSON.parse(saved); state.entries = data.entries||[]; state.images = data.images||[]; }
+        catch(e){}
+      }
+      renderTable();
+      renderKPIs();
+      renderStats();
+      drawChart();
+      renderGallery();
+      computeBudget();
+    })();
+
+    // Save helper
+    function persist(){ localStorage.setItem('mosq-project', JSON.stringify({entries:state.entries, images:state.images})); }
+
+    // Form submission
+    $('#surveyForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const entry = {
+        id: state.entries.length+1,
+        date: fd.get('date')||new Date().toISOString().slice(0,10),
+        location: fd.get('location')||'',
+        source: fd.get('source')||'',
+        severity: fd.get('severity')||'Low',
+        action: fd.get('action')||'Reported',
+        notes: fd.get('notes')||''
+      };
+      state.entries.push(entry);
+      persist();
+      renderTable();
+      renderKPIs();
+      renderStats();
+      drawChart();
+      // clear minimal
+      e.target.reset();
+    });
+
+    // Export CSV
+    $('#exportCSV').addEventListener('click', ()=>{
+      const head = ['#','Date','Location','Source','Severity','Action','Notes'];
+      const rows = state.entries.map(e=>[e.id,e.date,escapeCSV(e.location),e.source,e.severity,e.action,escapeCSV(e.notes)].join(','));
+      const csv = [head.join(','),...rows].join('\n');
+      const blob = new Blob([csv],{type:'text/csv'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'mosquito_survey.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+    function escapeCSV(v=''){ return '"'+String(v).replaceAll('"','""')+'"'; }
+
+    // Table render
+    function renderTable(){
+      const tbody = $('#dataTable tbody');
+      tbody.innerHTML = state.entries.map(e=>`
+        <tr>
+          <td>${e.id}</td>
+          <td>${e.date}</td>
+          <td>${e.location}</td>
+          <td>${e.source}</td>
+          <td>${e.severity}</td>
+          <td>${e.action}</td>
+          <td>${e.notes}</td>
+        </tr>`).join('');
+    }
+
+    // KPIs
+    function renderKPIs(){
+      $('#kpi-count').textContent = state.entries.length;
+      const cleaned = state.entries.filter(e=>['Cleaned','Covered','Fumigated'].includes(e.action)).length;
+      $('#kpi-cleaned').textContent = cleaned;
+    }
+
+    // Quick stats
+    function renderStats(){
+      const high = state.entries.filter(e=>e.severity==='High').length;
+      const pending = state.entries.filter(e=>e.action==='Pending' || e.action==='Reported').length;
+      $('#statHigh').textContent = high;
+      $('#statPending').textContent = pending;
+    }
+
+    // Simple bar chart without external libs
+    function drawChart(){
+      const ctx = $('#barChart').getContext('2d');
+      ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
+      const counts = countBy(state.entries, 'source');
+      const keys = Object.keys(counts);
+      const vals = Object.values(counts);
+      const W = ctx.canvas.width, H = ctx.canvas.height, pad=40;
+      const max = Math.max(1, ...vals);
+      // axes
+      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pad,10); ctx.lineTo(pad,H-pad); ctx.lineTo(W-10,H-pad); ctx.stroke();
+      // bars
+      const barW = (W-pad-20) / (keys.length||1) - 16;
+      keys.forEach((k,i)=>{
+        const x = pad + 16 + i*(barW+16);
+        const h = ((H-pad-20) * (counts[k]/max));
+        const y = H - pad - h;
+        // fill
+        const grad = ctx.createLinearGradient(0,y,0,y+h);
+        grad.addColorStop(0,'#7fb3ff'); grad.addColorStop(1,'#58d68d');
+        ctx.fillStyle = grad; ctx.fillRect(x,y,Math.max(8,barW),h);
+        // label
+        ctx.fillStyle = 'rgba(255,255,255,.8)';
+        ctx.font = '12px system-ui';
+        ctx.fillText(k, x, H-12);
+        ctx.fillText(String(counts[k]), x, y-4);
+      });
+    }
+    function countBy(arr, key){
+      const out={}; arr.forEach(o=>out[o[key]]=(out[o[key]]||0)+1); return out;
+    }
+
+    // Gallery uploads
+    $('#galleryInput').addEventListener('change', (e)=>{
+      const files = [...e.target.files].slice(0,24);
+      files.forEach(f=>{
+        const reader = new FileReader();
+        reader.onload = ev => { state.images.push(ev.target.result); renderGallery(); persist(); };
+        reader.readAsDataURL(f);
+      });
+      e.target.value='';
+    });
+    function renderGallery(){
+      const grid = $('#galleryGrid');
+      grid.innerHTML = state.images.map(src=>`<div class="thumb"><img src="${src}" alt="Site photo"/></div>`).join('');
+    }
+
+    // Budget total
+    function computeBudget(){
+      const cells = $$('#budgetTable tbody td:last-child');
+      const total = cells.map(td=>Number(td.textContent.replace(/[^0-9.]/g,''))||0).reduce((a,b)=>a+b,0);
+      $('#budgetTotal').textContent = total.toLocaleString('en-IN');
+      $('#budgetInline').textContent = '₹'+ total.toLocaleString('en-IN');
+    }
+    $('#budgetTable').addEventListener('input', computeBudget);
+
+    // Print button
+    $('#printBtn').addEventListener('click', ()=>window.print());
+  </script>
+</body>
+</html>
